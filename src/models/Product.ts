@@ -1,0 +1,58 @@
+import { DataTypes, Model } from "sequelize";
+import { sequelize } from "../database/db";
+import { Category } from "./Category";
+import { Seller } from "./Seller";
+import { Tag } from "./Tag";
+import { ProductTag } from "./ProductTag";
+import { Review } from "./Review";
+import { Order } from "./Order";
+import { OrderDetail } from "./OrderDetail";
+
+export interface ProductI {
+  id?: number;
+  name: string;
+  price: number;
+  description: string;
+  id_seller: number;
+  id_category: number;
+}
+
+export class Product extends Model<ProductI> implements ProductI {
+  public id!: number;
+  public name!: string;
+  public price!: number;
+  public description!: string;
+  public id_seller!: number;
+  public id_category!: number;
+}
+
+Product.init(
+  {
+    name: { type: DataTypes.STRING, allowNull: false },
+    price: { type: DataTypes.FLOAT, allowNull: false },
+    description: { type: DataTypes.STRING, allowNull: true },
+    id_seller: { type: DataTypes.INTEGER, allowNull: false },
+    id_category: { type: DataTypes.INTEGER, allowNull: false },
+  },
+  {
+    sequelize,
+    modelName: "Product",
+    tableName: "products",
+    timestamps: false,
+  }
+);
+
+Product.belongsTo(Category, { foreignKey: "id_category", as: "category" });
+Category.hasMany(Product, { foreignKey: "id_category", as: "products" });
+
+Product.belongsTo(Seller, { foreignKey: "id_seller", as: "seller" });
+Seller.hasMany(Product, { foreignKey: "id_seller", as: "products" });
+
+Product.belongsToMany(Tag, { through: ProductTag, foreignKey: "id_product", as: "tags" });
+Tag.belongsToMany(Product, { through: ProductTag, foreignKey: "id_tag", as: "products" });
+
+Product.belongsToMany(Order, { through: OrderDetail, foreignKey: "id_product", as: "orders" });
+Order.belongsToMany(Product, { through: OrderDetail, foreignKey: "id_order", as: "products" });
+
+Product.hasMany(Review, { foreignKey: "id_product", as: "reviews" });
+Review.belongsTo(Product, { foreignKey: "id_product", as: "product" });

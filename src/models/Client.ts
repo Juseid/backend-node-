@@ -1,0 +1,85 @@
+import { DataTypes, Model } from "sequelize";
+import { sequelize } from "../database/db";
+import bcrypt from 'bcryptjs';
+import { Order } from "./Order";  // 🔹 Importas solo lo que necesitas
+import { Review } from "./Review";
+
+
+
+export interface ClientI {
+  id?: number;
+  name: string;
+  phone: string;
+  email: string;
+  password: string;
+  status: "ACTIVE" | "INACTIVE";
+}
+
+export class Client extends Model {
+  public id!: number;
+  public name!: string;
+  public phone!: string;
+  public email!: string;
+  public password!: string;
+  public status!: "ACTIVE" | "INACTIVE";
+}
+Client.init(
+  {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        notEmpty: { msg: "Name cannot be empty" },
+      },
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        notEmpty: { msg: "Phone cannot be empty" },
+      },
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true,
+      validate: {
+        isEmail: { msg: "Email must be a valid email address" }, // Validate email format
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    status: {
+      type: DataTypes.ENUM("ACTIVE", "INACTIVE"),
+      defaultValue: "ACTIVE",
+    },
+  },
+  {
+    sequelize,
+    modelName: "Client",
+    tableName: "clients",
+    timestamps: false,
+        hooks: {
+          beforeCreate: async (client: Client) => {
+            if (client.password) {
+              const salt = await bcrypt.genSalt(10);
+              client.password = await bcrypt.hash(client.password, salt);
+            }
+          },
+          beforeUpdate: async (client: Client) => {
+            if (client.password) {
+              const salt = await bcrypt.genSalt(10);
+              client.password = await bcrypt.hash(client.password, salt);
+            }
+          }
+        }
+  }
+);
+
+Client.hasMany(Order, { foreignKey: "id_client", as: "orders" });
+Order.belongsTo(Client, { foreignKey: "id_client", as: "client" });
+
+Client.hasMany(Review, { foreignKey: "id_client", as: "reviews" });
+Review.belongsTo(Client, { foreignKey: "id_client", as: "client" });
