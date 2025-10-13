@@ -1,5 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../../database/db";
+import { RoleUser } from "./RoleUser";
+
 
 export class Role extends Model {
   public id!: number;
@@ -30,3 +32,12 @@ Role.init(
     timestamps: false
   }
 );
+
+Role.hasMany(RoleUser, {
+  foreignKey: 'role_id',
+  sourceKey: "id",
+});
+RoleUser.belongsTo(Role, {
+  foreignKey: 'role_id',
+  targetKey: "id",
+});

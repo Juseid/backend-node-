@@ -2,6 +2,8 @@ import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../../database/db";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { RoleUser } from "./RoleUser";
+
 
 export class User extends Model {
   id!: number;
@@ -86,4 +88,14 @@ User.init(
       }
     }
   }
+
 );
+
+User.hasMany(RoleUser, {
+  foreignKey: 'user_id',
+  sourceKey: "id",
+});
+RoleUser.belongsTo(User, {
+  foreignKey: 'user_id',
+  targetKey: "id",
+});
