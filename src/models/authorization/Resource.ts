@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import { sequelize } from "../../database/db";
+import { sequelize } from "../../database/connection";
 
 export class Resource extends Model {
   public id!: number;

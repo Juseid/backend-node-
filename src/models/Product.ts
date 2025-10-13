@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { sequelize } from "../database/db";
+import { sequelize } from "../database/connection";
 import { Category } from "./Category";
 import { Seller } from "./Seller";
 import { Tag } from "./Tag";

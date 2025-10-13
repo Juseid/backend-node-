@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import {sequelize} from "../../database/db";
+import {sequelize} from "../../database/connection";
 import { User } from "./User";
 
 export class RefreshToken extends Model {

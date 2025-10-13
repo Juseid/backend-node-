@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { sequelize } from "../database/db";
+import { sequelize } from "../database/connection";
 import bcrypt from 'bcryptjs';
 import { Order } from "./Order";  // 🔹 Importas solo lo que necesitas
 import { Review } from "./Review";

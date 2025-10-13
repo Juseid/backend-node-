@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import { sequelize } from "../../database/db";
+import { sequelize } from "../../database/connection";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { RoleUser } from "./RoleUser";
