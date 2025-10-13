@@ -1,12 +1,14 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/db";
 import { Product } from "./Product";
+import bcrypt from 'bcryptjs';
 
 export interface SellerI {
   id?: number;
   name: string;
   email: string;
   phone: string;
+  password?: string;
   status: "ACTIVE" | "INACTIVE";
 }
 
@@ -15,6 +17,7 @@ export class Seller extends Model {
   public name!: string;
   public email!: string;
   public phone!: string;
+  public password!: string;
   public status!: "ACTIVE" | "INACTIVE";
   public code!: string;
 }
@@ -62,6 +65,20 @@ Seller.init(
     modelName: "seller",
     tableName: "sellers",
     timestamps: false,
+    hooks: {
+      beforeCreate: async (seller: Seller) => {
+        if (seller.password) {
+          const salt = await bcrypt.genSalt(10);
+          seller.password = await bcrypt.hash(seller.password, salt);
+        }
+      },
+      beforeUpdate: async (seller: Seller) => {
+        if (seller.password) {
+          const salt = await bcrypt.genSalt(10);
+          seller.password = await bcrypt.hash(seller.password, salt);
+        }
+      }
+    }
   }
 );
 

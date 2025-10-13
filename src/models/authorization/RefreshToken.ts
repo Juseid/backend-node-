@@ -1,7 +1,5 @@
 import { Model, DataTypes } from "sequelize";
 import {sequelize} from "../../database/db";
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import { User } from "./User";
 
 export class RefreshToken extends Model {

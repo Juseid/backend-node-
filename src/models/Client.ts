@@ -9,7 +9,7 @@ import { Review } from "./Review";
 export interface ClientI {
   id?: number;
   name: string;
-  phone: string;
+  phone: string;  
   email: string;
   password: string;
   status: "ACTIVE" | "INACTIVE";

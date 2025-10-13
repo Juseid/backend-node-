@@ -15,6 +15,7 @@ export interface ProductI {
   description: string;
   id_seller: number;
   id_category: number;
+  status: "ACTIVE" | "INACTIVE";
 }
 
 export class Product extends Model<ProductI> implements ProductI {
@@ -24,6 +25,7 @@ export class Product extends Model<ProductI> implements ProductI {
   public description!: string;
   public id_seller!: number;
   public id_category!: number;
+  public status!: "ACTIVE" | "INACTIVE";
 }
 
 Product.init(
@@ -33,6 +35,10 @@ Product.init(
     description: { type: DataTypes.STRING, allowNull: true },
     id_seller: { type: DataTypes.INTEGER, allowNull: false },
     id_category: { type: DataTypes.INTEGER, allowNull: false },
+    status: {
+      type: DataTypes.ENUM("ACTIVE", "INACTIVE"),
+      defaultValue: "ACTIVE",
+    },
   },
   {
     sequelize,

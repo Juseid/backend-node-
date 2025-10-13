@@ -5,11 +5,13 @@ import { sequelize } from "../database/db";
 export interface CategoryI {
   id?: number;
   name: string;
+  status: "ACTIVE" | "INACTIVE";
 }
 
 export class Category extends Model {
   public id!: number;
   public name!: string;
+  public status!: "ACTIVE" | "INACTIVE";
 }
 
 Category.init(
@@ -20,6 +22,10 @@ Category.init(
       validate: {
         notEmpty: { msg: "Name cannot be empty" },
       },
+    },
+    status: {
+      type: DataTypes.ENUM("ACTIVE", "INACTIVE"),
+      defaultValue: "ACTIVE",
     },
   },
   {
