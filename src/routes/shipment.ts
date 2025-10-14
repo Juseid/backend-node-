@@ -13,10 +13,10 @@ export class ShipmentRoutes {
     app.route("/api/shipments/:id")
       .get(this.shipmentController.getShipmentById)
       .patch(this.shipmentController.updateShipment)
-      .delete(this.shipmentController.deleteSeller);
+      .delete(this.shipmentController.deleteShipment);
 
     app.route("/api/shipments/:id/logic")
-      .delete(this.shipmentController.deleteSellerAdv);
+      .delete(this.shipmentController.deleteShipmentAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
 

@@ -85,7 +85,7 @@ export class ShipmentController {
   }
 
   // Delete a shipment physically
-  public async deleteSeller(req: Request, res: Response) {
+  public async deleteShipment(req: Request, res: Response) {
     try {
       const { id } = req.params;
       const shipmentToDelete = await Shipment.findByPk(id);
@@ -102,7 +102,7 @@ export class ShipmentController {
   }
 
   // Delete a Shipment logically (change status to "INACTIVE")
-  public async deleteSellerAdv(req: Request, res: Response) {
+  public async deleteShipmentAdv(req: Request, res: Response) {
     try {
       const { id: pk } = req.params;
       const shipmentToUpdate = await Shipment.findOne({

@@ -1,7 +1,7 @@
 import { Router, Application } from "express";
 import { ProductTagController } from "../controllers/productTag.controller";
 
-export class ProductRoutes {
+export class ProductTagRoutes {
   public productTagController: ProductTagController = new ProductTagController();
 
   public routes(app: Application): void {
