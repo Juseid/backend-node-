@@ -1,22 +1,37 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/connection";
+import { Payment } from './Payment';
+import { Shipment } from './Shipment';
 
 export interface OrderI {
   id?: number;
   id_client: number;
-  status: "PENDING" | "PAID" | "SHIPPED";
+  status?: "PENDING" | "PAID" | "SHIPPED"; // ✅ Opcional en la creación
+  fecha?: Date;                           // ✅ Opcional en la creación
+  total: number;
 }
 
 export class Order extends Model<OrderI> implements OrderI {
   public id!: number;
   public id_client!: number;
-  public status!: "PENDING" | "PAID" | "SHIPPED";
+  public status!: "PENDING" | "PAID" | "SHIPPED"; // El tipo sigue siendo estricto en la instancia
+  public fecha!: Date;
+  public total!: number;
 }
 
 Order.init(
   {
     id_client: { type: DataTypes.INTEGER, allowNull: false },
     status: { type: DataTypes.ENUM("PENDING", "PAID", "SHIPPED"), defaultValue: "PENDING" },
+    fecha: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      allowNull: false
+    },
+    total: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    }
   },
   {
     sequelize,
@@ -25,3 +40,10 @@ Order.init(
     timestamps: false,
   }
 );
+
+
+
+Payment.belongsTo(Order, { foreignKey: 'id_order', as: 'order' });
+
+Order.hasOne(Payment, { foreignKey: 'id_order', as: 'payment' });
+Order.hasOne(Shipment, { foreignKey: 'id_order', as: 'shipment' });

@@ -36,10 +36,11 @@ export class ClientController {
 
   // Create a new client
   public async createClient(req: Request, res: Response) {
-    const { id, name, phone, email, password, status } = req.body;
+    const { id, name, address, phone, email, password, status } = req.body;
     try {
       let body: ClientI = {
         name,
+        address,
         phone,
         email,
         password,
@@ -56,10 +57,11 @@ export class ClientController {
   // Update a client
   public async updateClient(req: Request, res: Response) {
     const { id: pk } = req.params;
-    const { id, name, phone, email, password, status } = req.body;
+    const { id, name, address, phone, email, password, status } = req.body;
     try {
       let body: ClientI = {
         name,
+        address,
         phone,
         email,
         password,

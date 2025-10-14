@@ -19,7 +19,6 @@ export class Seller extends Model {
   public phone!: string;
   public password!: string;
   public status!: "ACTIVE" | "INACTIVE";
-  public code!: string;
 }
 
 Seller.init(
@@ -56,8 +55,11 @@ Seller.init(
     },
     code: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       unique: true,
+      validate: {
+        len: [10, 10]
+      }
     }
   },
     {
