@@ -88,7 +88,7 @@ export class OrderDetailController {
     }
   }
 
-  // Delete a Order physically
+  // Delete a OrderDetail physically
 public async deleteOrderDetail(req: Request, res: Response) {
   try {
     // 1. Obtienes ambos IDs de la URL
