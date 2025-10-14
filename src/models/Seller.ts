@@ -83,6 +83,3 @@ Seller.init(
     }
   }
 );
-
-Seller.hasMany(Product, { foreignKey: "id_seller", as: "products" });
-Product.belongsTo(Seller, { foreignKey: "id_seller", as: "seller" });

@@ -39,5 +39,3 @@ Shipment.init(
     timestamps: false,
   }
 );
-
-Shipment.belongsTo(Order, { foreignKey: 'id_order', as: 'order' });

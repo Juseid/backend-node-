@@ -2,11 +2,13 @@ import dotenv from "dotenv";
 import express, { Application } from "express";
 import morgan from "morgan";
 import { sequelize } from "../database/connection";
+import { Routes } from "../routes";
 var cors = require("cors"); // install en node y types
 dotenv.config();
 
 export class App {
   public app: Application;
+  private mainRoutes: Routes = new Routes();
 
   constructor(private port?: number | string) {
     this.app = express();
@@ -28,7 +30,23 @@ export class App {
   }
 
   private routes(): void {
-    // Las rutas se configurarán más adelante
+    this.mainRoutes.clientRoutes.routes(this.app);
+    this.mainRoutes.categoryRoutes.routes(this.app);
+    this.mainRoutes.orderRoutes.routes(this.app);
+    this.mainRoutes.orderDetailRoutes.routes(this.app);
+    this.mainRoutes.paymentRoutes.routes(this.app);
+    this.mainRoutes.productRoutes.routes(this.app);
+    this.mainRoutes.productTagRoutes.routes(this.app);
+    this.mainRoutes.reviewRoutes.routes(this.app);
+    this.mainRoutes.sellerRoutes.routes(this.app);
+    this.mainRoutes.shipmentRoutes.routes(this.app);
+    this.mainRoutes.tagRoutes.routes(this.app);
+    this.mainRoutes.userRoutes.routes(this.app);
+    this.mainRoutes.roleRoutes.routes(this.app);
+    this.mainRoutes.roleUserRoutes.routes(this.app);
+    this.mainRoutes.refreshTokenRoutes.routes(this.app);
+    this.mainRoutes.resourceRoutes.routes(this.app);
+    this.mainRoutes.resourceRoleRoutes.routes(this.app);
   }
 
   private async dbConnection(): Promise<void> {

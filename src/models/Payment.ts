@@ -1,6 +1,5 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/connection";
-import { Order } from './Order';
 
 export interface PaymentI {
   id?: number;
@@ -42,5 +41,3 @@ Payment.init(
     timestamps: false,
   }
 );
-
-Payment.belongsTo(Order, { foreignKey: 'id_order', as: 'order' });

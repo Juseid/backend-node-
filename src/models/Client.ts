@@ -87,9 +87,3 @@ Client.init(
         }
   }
 );
-
-Client.hasMany(Order, { foreignKey: "id_client", as: "orders" });
-Order.belongsTo(Client, { foreignKey: "id_client", as: "client" });
-
-Client.hasMany(Review, { foreignKey: "id_client", as: "reviews" });
-Review.belongsTo(Client, { foreignKey: "id_client", as: "client" });
