@@ -114,7 +114,7 @@ public async deleteOrderDetail(req: Request, res: Response) {
   }
 }
 
-  // Delete a Order logically (change status to "INACTIVE")
+  // Delete a OrderDetail logically (change status to "INACTIVE")
   public async deleteOrderDetailAdv(req: Request, res: Response) {
     try {
       const { id_order, id_product  } = req.params;
@@ -127,12 +127,12 @@ public async deleteOrderDetail(req: Request, res: Response) {
 
       if (orderDetailToUpdate) {
         await orderDetailToUpdate.update({ status: 'INACTIVE' });
-        res.status(200).json({ message: "Order marked as inactive" });
+        res.status(200).json({ message: "OrderDetail marked as inactive" });
       } else {
-        res.status(404).json({ error: "Order not found" });
+        res.status(404).json({ error: "OrderDetail not found" });
       }
     } catch (error) {
-      res.status(500).json({ error: "Error marking order as inactive" });
+      res.status(500).json({ error: "Error marking orderDetail as inactive" });
     }
   }
 }

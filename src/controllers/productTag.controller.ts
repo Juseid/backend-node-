@@ -42,7 +42,7 @@ export class ProductTagController {
 
 
   // Create a new productTag
-  public async createProductTagDetail(req: Request, res: Response) {
+  public async createProductTag(req: Request, res: Response) {
     const { id, id_product, id_tag, status } = req.body;
     try {
       let body: ProductTagI = {
@@ -113,23 +113,24 @@ public async deleteProductTag(req: Request, res: Response) {
 }
 
   // Delete a Product logically (change status to "INACTIVE")
-  public async deleteProductAdv(req: Request, res: Response) {
+  public async deleteProductTagAdv(req: Request, res: Response) {
     try {
-      const { id: pk } = req.params;
-      const productToUpdate = await Product.findOne({
-        where: { 
-          id: pk, 
+      const { id_product, id_tag  } = req.params;
+      const productTagToUpdate = await ProductTag.findOne({
+        where: {
+          id_product: id_product,
+          id_tag: id_tag,
           status: 'ACTIVE' },
       });
 
-      if (productToUpdate) {
-        await productToUpdate.update({ status: 'INACTIVE' });
-        res.status(200).json({ message: "Product marked as inactive" });
+      if (productTagToUpdate) {
+        await productTagToUpdate.update({ status: 'INACTIVE' });
+        res.status(200).json({ message: "productTag marked as inactive" });
       } else {
-        res.status(404).json({ error: "Product not found" });
+        res.status(404).json({ error: "productTag not found" });
       }
     } catch (error) {
-      res.status(500).json({ error: "Error marking Product as inactive" });
+      res.status(500).json({ error: "Error marking productTag as inactive" });
     }
   }
 }
