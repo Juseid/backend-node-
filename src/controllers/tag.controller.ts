@@ -17,7 +17,7 @@ export class TagController {
 
   // Get a tags by ID
 
-  public async getTagsById(req: Request, res: Response) {
+  public async getTagById(req: Request, res: Response) {
     try {
       const { id: pk } = req.params;
       const tag = await Tag.findOne({
@@ -81,7 +81,7 @@ export class TagController {
   }
 
   // Delete a tag physically
-  public async deleteSeller(req: Request, res: Response) {
+  public async deleteTag(req: Request, res: Response) {
     try {
       const { id } = req.params;
       const tagToDelete = await Tag.findByPk(id);
