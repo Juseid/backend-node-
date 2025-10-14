@@ -84,9 +84,28 @@ export class OrderController {
         res.status(404).json({ error: "Order not found" });
       }
     } catch (error) {
-      res.status(500).json({ error: "Error deleting OrdeR" });
+      res.status(500).json({ error: "Error deleting Order" });
     }
   }
+    // Delete a product type logically (change status to false)
+  public async deleteProductTypeAdv(req: Request, res: Response) {
+    try {
+      const { id: pk } = req.params;
+      const productTypeToUpdate = await ProductType.findOne({
+        where: { id: pk, status: true },
+      });
+
+      if (productTypeToUpdate) {
+        await productTypeToUpdate.update({ status: false });
+        res.status(200).json({ message: "Product type marked as inactive" });
+      } else {
+        res.status(404).json({ error: "Product type not found" });
+      }
+    } catch (error) {
+      res.status(500).json({ error: "Error marking product type as inactive" });
+    }
+  }
+
 
 
 }
