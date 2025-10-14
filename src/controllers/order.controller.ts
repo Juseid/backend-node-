@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { Order, OrderI } from "../models/Order";
-import { or } from "sequelize";
+
 
 export class OrderController {
-  // Get all orders with status "ACTIVE"
+  // Get all orders with statuss "ACTIVE"
   public async getAllOrders(req: Request, res: Response) {
     try {
       const orders: OrderI[] = await Order.findAll({
-        where: { status: 'ACTIVE' },
+        where: { statuss: 'ACTIVE' },
       });
       res.status(200).json({ orders });
     } catch (error) {
@@ -23,7 +23,7 @@ export class OrderController {
       const order = await Order.findOne({
         where: { 
           id: pk, 
-          status: 'ACTIVE' },
+          statuss: 'ACTIVE' },
       });
       if (order) {
         res.status(200).json({order});
@@ -37,13 +37,14 @@ export class OrderController {
 
   // Create a new Order
   public async createOrder(req: Request, res: Response) {
-    const { id, id_client, fecha, total, status } = req.body;
+    const { id, id_client, fecha, total, status,statuss } = req.body;
     try {
       let body: OrderI = {
         id_client,
         fecha,
         total,
         status,
+        statuss,
       };
 
       const newOrder = await Order.create({ ...body });
@@ -56,19 +57,20 @@ export class OrderController {
   // Update a Order
   public async updateOrder(req: Request, res: Response) {
     const { id: pk } = req.params;
-    const { id, id_client, fecha, total, status } = req.body;
+    const { id, id_client, fecha, total, status, statuss } = req.body;
     try {
       let body: OrderI = {
         id_client,
         fecha,
         total,
         status,
+        statuss,
       };
 
       const orderExist = await Order.findOne({
         where: { 
           id: pk, 
-          status: 'ACTIVE' },
+          statuss: 'ACTIVE' },
       });
 
       if (orderExist) {
@@ -108,17 +110,17 @@ export class OrderController {
       const orderToUpdate = await Order.findOne({
         where: { 
           id: pk, 
-          status: 'ACTIVE' },
+          statuss: 'ACTIVE' },
       });
 
-      if (clientToUpdate) {
-        await clientToUpdate.update({ status: 'INACTIVE' });
-        res.status(200).json({ message: "Client marked as inactive" });
+      if (orderToUpdate) {
+        await orderToUpdate.update({ statuss: 'INACTIVE' });
+        res.status(200).json({ message: "Order marked as inactive" });
       } else {
-        res.status(404).json({ error: "Client not found" });
+        res.status(404).json({ error: "Order not found" });
       }
     } catch (error) {
-      res.status(500).json({ error: "Error marking client as inactive" });
+      res.status(500).json({ error: "Error marking order as inactive" });
     }
   }
 }
