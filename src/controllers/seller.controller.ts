@@ -55,7 +55,7 @@ export class SellerController {
   }
 
   // Update a Seller
-  public async updateOrder(req: Request, res: Response) {
+  public async updateSeller(req: Request, res: Response) {
     const { id: pk } = req.params;
     const { id, name, email, phone, password, status } = req.body;
     try {

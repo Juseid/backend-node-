@@ -55,7 +55,7 @@ export class ReviewController {
   }
 
   // Update a Review
-  public async updateOrder(req: Request, res: Response) {
+  public async updateReview(req: Request, res: Response) {
     const { id: pk } = req.params;
     const { id, id_product, id_client, rating, comment, status } = req.body;
     try {

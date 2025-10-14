@@ -4,7 +4,7 @@ import { OrderDetail, OrderDetailI } from "../models/OrderDetail";
 
 export class OrderDetailController {
   // Get all orderdeetails with statuss "ACTIVE"
-  public async getAllOrderDetail(req: Request, res: Response) {
+  public async getAllOrderDetails(req: Request, res: Response) {
     try {
       const orderdetails: OrderDetailI[] = await OrderDetail.findAll({
         where: { status: 'ACTIVE' },

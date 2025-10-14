@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Tag, TagI } from "../models/Tag";
 
 
-export class tagController {
+export class TagController {
   // Get all Shipment with statuss "ACTIVE"
   public async getAllTags(req: Request, res: Response) {
     try {
