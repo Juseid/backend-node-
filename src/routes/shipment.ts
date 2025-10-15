@@ -1,5 +1,7 @@
 import { Router, Application } from "express";
 import { ShipmentController } from "../controllers/shipment.controller";
+import { authMiddleware } from "../middleware/auth";
+
 
 export class ShipmentRoutes {
   public shipmentController: ShipmentController = new ShipmentController();
@@ -19,7 +21,17 @@ export class ShipmentRoutes {
       .delete(this.shipmentController.deleteShipmentAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
+    app.route("/api/Shipments")
+      .get(authMiddleware, this.shipmentController.getAllShipments)
+      .post(authMiddleware, this.shipmentController.createShipment);
 
+    app.route("/api/Shipments/:id")
+      .get(authMiddleware, this.shipmentController.getShipmentById)
+      .patch(authMiddleware, this.shipmentController.updateShipment)
+      .delete(authMiddleware, this.shipmentController.deleteShipment);
+
+    app.route("/api/Shipments/:id/logic")
+      .delete(authMiddleware, this.shipmentController.deleteShipmentAdv);
 
   }
 }

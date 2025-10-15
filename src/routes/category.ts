@@ -1,5 +1,6 @@
 import { Router, Application } from "express";
 import { CategoryController } from "../controllers/category.controller";
+import { authMiddleware } from "../middleware/auth";
 
 export class CategoryRoutes {
   public categoryController: CategoryController = new CategoryController();
@@ -19,7 +20,19 @@ export class CategoryRoutes {
       .delete(this.categoryController.deleteCategoryAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
+    app.route("/api/Categories")
+      .get(authMiddleware, this.categoryController.getAllCategories)
+      .post(authMiddleware, this.categoryController.createCategory);
 
+    app.route("/api/Categories/:id")
+      .get(authMiddleware, this.categoryController.getCategoryById)
+      .patch(authMiddleware, this.categoryController.updateCategory)
+      .delete(authMiddleware, this.categoryController.deleteCategory);
+
+    app.route("/api/Categories/:id/logic")
+      .delete(authMiddleware, this.categoryController.deleteCategoryAdv);
 
   }
+
+  
 }

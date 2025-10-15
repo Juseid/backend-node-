@@ -4,14 +4,14 @@
 ### ================== RUTAS SIN AUTENTICACIÓN ==================
 
 ### Obtener todos los detalles de órdenes
-GET {{baseUrl}}/api/orderdetails
+GET {{baseUrl}}/api/orderDetails
 
 
 ### Obtener un detalle de orden por su clave compuesta
-GET {{baseUrl}}/api/orderdetails/1
+GET {{baseUrl}}/api/orderDetails/1/1
 
 ### Crear un nuevo detalle de orden
-POST {{baseUrl}}/api/orderdetails
+POST {{baseUrl}}/api/orderDetails
 Content-Type: application/json
 
 {
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 
 ### Actualizar un detalle de orden
-PATCH {{baseUrl}}/api/orderdetails/1
+PATCH {{baseUrl}}/api/orderDetails/1
 Content-Type: application/json
 
 {
@@ -34,12 +34,57 @@ Content-Type: application/json
 
 
 ### Eliminar un detalle de orden físicamente
-DELETE {{baseUrl}}/api/orderdetails/1
+DELETE {{baseUrl}}/api/orderDetails/1
 
 
 
 ### Eliminar un detalle de orden lógicamente
-DELETE {{baseUrl}}/api/orderdetails/1/logic
+DELETE {{baseUrl}}/api/orderDetails/1/logic
 
 
 ### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los detalles de órdenes (CON token)
+GET {{baseUrl}}/api/OrderDetails
+Authorization: Bearer {{token}}
+
+### Obtener un detalle de orden por ID (CON token)
+GET {{baseUrl}}/api/OrderDetails/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo detalle de orden (CON token)
+POST {{baseUrl}}/api/OrderDetails
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id_order": 2,
+  "id_product": 3,
+  "quantity": 5,
+  "price": 99.99,
+  "status": "ACTIVE"
+}
+
+### Actualizar un detalle de orden (CON token)
+PATCH {{baseUrl}}/api/OrderDetails/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "quantity": 10,
+  "price": 120.50
+}
+
+### Eliminar un detalle de orden físicamente (CON token)
+DELETE {{baseUrl}}/api/OrderDetails/1
+Authorization: Bearer {{token}}
+
+### Eliminar un detalle de orden lógicamente (CON token)
+DELETE {{baseUrl}}/api/OrderDetails/1/logic
+Authorization: Bearer {{token}}
+
+
+
+
+
+

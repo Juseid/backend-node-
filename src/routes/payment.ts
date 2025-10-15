@@ -1,5 +1,7 @@
 import { Router, Application } from "express";
 import { PaymentController } from "../controllers/payment.controller";
+import { authMiddleware } from "../middleware/auth";
+
 
 export class PaymentRoutes {
   public paymentController: PaymentController = new PaymentController();
@@ -19,7 +21,17 @@ export class PaymentRoutes {
       .delete(this.paymentController.deletePaymentAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
+    app.route("/api/Payments")
+      .get(authMiddleware, this.paymentController.getAllPayments)
+      .post(authMiddleware, this.paymentController.createPayment);
 
+    app.route("/api/Payment/:id")
+      .get(authMiddleware, this.paymentController.getPaymentById)
+      .patch(authMiddleware, this.paymentController.updatePayment)
+      .delete(authMiddleware, this.paymentController.deletePayment);
+
+    app.route("/api/Payments/:id/logic")
+      .delete(authMiddleware, this.paymentController.deletePaymentAdv);
 
   }
 }

@@ -44,3 +44,41 @@ DELETE {{baseUrl}}/api/sellers/1/logic
 
 
 ### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los vendedores (CON token)
+GET {{baseUrl}}/api/Sellers
+Authorization: Bearer {{token}}
+
+### Obtener vendedor por ID (CON token)
+GET {{baseUrl}}/api/Sellers/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo vendedor (CON token)
+POST {{baseUrl}}/api/Sellers
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Global Imports",
+  "email": "contact@globalimports.co",
+  "phone": "3209876543",
+  "password": "strongpassword456",
+  "status": "ACTIVE"
+}
+
+### Actualizar un vendedor (CON token)
+PATCH {{baseUrl}}/api/Sellers/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "phone": "3215550102"
+}
+
+### Eliminar un vendedor físicamente (CON token)
+DELETE {{baseUrl}}/api/Sellers/1
+Authorization: Bearer {{token}}
+
+### Eliminar un vendedor lógicamente (CON token)
+DELETE {{baseUrl}}/api/Sellers/1/logic
+Authorization: Bearer {{token}}

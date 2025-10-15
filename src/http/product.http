@@ -45,3 +45,42 @@ DELETE {{baseUrl}}/api/products/1/logic
 
 
 ### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los productos (CON token)
+GET {{baseUrl}}/api/Products
+Authorization: Bearer {{token}}
+
+### Obtener producto por ID (CON token)
+GET {{baseUrl}}/api/Products/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo producto (CON token)
+POST {{baseUrl}}/api/Products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Smartphone Z",
+  "description": "El último modelo con cámara de alta resolución.",
+  "price": 899.50,
+  "id_seller": 2,
+  "id_category": 2,
+  "status": "ACTIVE"
+}
+
+### Actualizar un producto (CON token)
+PATCH {{baseUrl}}/api/Products/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "price": 1550.00
+}
+
+### Eliminar un producto físicamente (CON token)
+DELETE {{baseUrl}}/api/Products/1
+Authorization: Bearer {{token}}
+
+### Eliminar un producto lógicamente (CON token)
+DELETE {{baseUrl}}/api/Products/1/logic
+Authorization: Bearer {{token}}

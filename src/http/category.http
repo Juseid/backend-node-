@@ -45,3 +45,39 @@ DELETE {{baseUrl}}/api/categories/1/logic
 
 
 ### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todas las categorías (CON token)
+GET {{baseUrl}}/api/Categories
+Authorization: Bearer {{token}}
+
+### Obtener categoría por ID (CON token)
+GET {{baseUrl}}/api/Categories/1
+Authorization: Bearer {{token}}
+
+### Crear una nueva categoría (CON token)
+POST {{baseUrl}}/api/Categories
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Deportes",
+  "status": "ACTIVE"
+}
+
+### Actualizar una categoría (CON token)
+PATCH {{baseUrl}}/api/Categories/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Hogar Actualizado",
+  "status": "INACTIVE"
+}
+
+### Eliminar una categoría físicamente (CON token)
+DELETE {{baseUrl}}/api/Categories/1
+Authorization: Bearer {{token}}
+
+### Eliminar una categoría lógicamente (CON token)
+DELETE {{baseUrl}}/api/Categories/1/logic
+Authorization: Bearer {{token}}

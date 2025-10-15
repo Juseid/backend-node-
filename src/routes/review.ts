@@ -1,5 +1,6 @@
 import { Router, Application } from "express";
 import { ReviewController } from "../controllers/review.controller";
+import { authMiddleware } from "../middleware/auth";
 
 export class ReviewRoutes {
   public reviewController: ReviewController = new ReviewController();
@@ -19,7 +20,16 @@ export class ReviewRoutes {
       .delete(this.reviewController.deleteReviewAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
+    app.route("/api/Reviews")
+      .get(authMiddleware, this.reviewController.getAllReviews)
+      .post(authMiddleware, this.reviewController.createReview);
 
+    app.route("/api/Reviews/:id")
+      .get(authMiddleware, this.reviewController.getReviewById)
+      .patch(authMiddleware, this.reviewController.updateReview)
+      .delete(authMiddleware, this.reviewController.deleteReview);
 
+    app.route("/api/Reviews/:id/logic")
+      .delete(authMiddleware, this.reviewController.deleteReviewAdv);
   }
 }

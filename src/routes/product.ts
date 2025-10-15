@@ -1,5 +1,6 @@
 import { Router, Application } from "express";
 import { ProductController } from "../controllers/product.controller";
+import { authMiddleware } from "../middleware/auth";
 
 export class ProductRoutes {
   public productController: ProductController = new ProductController();
@@ -19,7 +20,17 @@ export class ProductRoutes {
       .delete(this.productController.deleteProductAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
+    app.route("/api/Products")
+      .get(authMiddleware, this.productController.getAllProducts)
+      .post(authMiddleware, this.productController.createProduct);
 
+    app.route("/api/Products/:id")
+      .get(authMiddleware, this.productController.getProductById)
+      .patch(authMiddleware, this.productController.updateProduct)
+      .delete(authMiddleware, this.productController.deleteProduct);
+
+    app.route("/api/Products/:id/logic")
+      .delete(authMiddleware, this.productController.deleteProductAdv);
 
   }
 }

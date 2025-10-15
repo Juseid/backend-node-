@@ -53,3 +53,43 @@ DELETE {{baseUrl}}/api/clientes/1/logic
 
 
 ### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los clientes (CON token)
+GET {{baseUrl}}/api/Clientes
+Authorization: Bearer {{token}}
+
+### Obtener cliente por ID (CON token)
+GET {{baseUrl}}/api/Clientes/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo cliente (CON token)
+POST {{baseUrl}}/api/Clientes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "María García",
+  "address": "Avenida Siempre Viva 742",
+  "code": "987654321",
+  "email": "maria.garcia@example.com",
+  "password": "securepassword123",
+  "status": "ACTIVE"
+}
+
+### Actualizar un cliente (CON token)
+PATCH {{baseUrl}}/api/Clientes/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "María García Actualizada",
+  "address": "Nueva Dirección 123"
+}
+
+### Eliminar un cliente físicamente (CON token)
+DELETE {{baseUrl}}/api/Clientes/1
+Authorization: Bearer {{token}}
+
+### Eliminar un cliente lógicamente (CON token)
+DELETE {{baseUrl}}/api/Clientes/1/logic
+Authorization: Bearer {{token}}

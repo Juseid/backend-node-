@@ -15,7 +15,7 @@ POST {{baseUrl}}/api/shipments
 Content-Type: application/json
 
 {
-  "id_order": 2,
+  "id_order": 1,
   "tracking_number": "ABC123XYZ456",
   "fecha_envio": "2024-08-01T15:30:00Z",
   "status": "ACTIVE"
@@ -42,3 +42,41 @@ DELETE {{baseUrl}}/api/shipments/1/logic
 
 
 ### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los envíos (CON token)
+GET {{baseUrl}}/api/Shipments
+Authorization: Bearer {{token}}
+
+### Obtener envío por ID (CON token)
+GET {{baseUrl}}/api/Shipments/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo envío (CON token)
+POST {{baseUrl}}/api/Shipments
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id_order": 3,
+  "tracking_number": "GHI789JKL012",
+  "fecha_envio": "2025-10-16T10:00:00Z",
+  "status": "ACTIVE"
+}
+
+### Actualizar un envío (CON token)
+PATCH {{baseUrl}}/api/Shipments/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "tracking_number": "UPDATEDTRACK9876",
+  "status": "SHIPPED"
+}
+
+### Eliminar un envío físicamente (CON token)
+DELETE {{baseUrl}}/api/Shipments/1
+Authorization: Bearer {{token}}
+
+### Eliminar un envío lógicamente (CON token)
+DELETE {{baseUrl}}/api/Shipments/1/logic
+Authorization: Bearer {{token}}

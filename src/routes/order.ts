@@ -1,5 +1,6 @@
 import { Router, Application } from "express";
 import { OrderController } from "../controllers/order.controller";
+import { authMiddleware } from "../middleware/auth";
 
 export class OrderRoutes {
   public orderController: OrderController = new OrderController();
@@ -19,7 +20,17 @@ export class OrderRoutes {
       .delete(this.orderController.deleteOrderAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
+    app.route("/api/Orders")
+      .get(authMiddleware, this.orderController.getAllOrders)
+      .post(authMiddleware, this.orderController.createOrder);
 
+    app.route("/api/Orders/:id")
+      .get(authMiddleware, this.orderController.getOrderById)
+      .patch(authMiddleware, this.orderController.updateOrder)
+      .delete(authMiddleware, this.orderController.deleteOrder);
+
+    app.route("/api/Orders/:id/logic")
+      .delete(authMiddleware, this.orderController.deleteOrderAdv);
 
   }
 }

@@ -4,14 +4,14 @@
 ### ================== RUTAS SIN AUTENTICACIÓN ==================
 
 ### Obtener todas las asociaciones producto-tag
-GET {{baseUrl}}/api/ProductTags
+GET {{baseUrl}}/api/productTags
 
 
 ### Obtener una asociación por su clave compuesta (id_product/id_tag)
-GET {{baseUrl}}//api/ProductTags/1
+GET {{baseUrl}}//api/productTags/1
 
 ### Crear una nueva asociación producto-tag
-POST {{baseUrl}}/api/ProductTags
+POST {{baseUrl}}/api/productTags
 Content-Type: application/json
 
 {
@@ -22,7 +22,30 @@ Content-Type: application/json
 
 
 ### Eliminar una asociación físicamente
-DELETE {{baseUrl}}//api/ProductTags/1
+DELETE {{baseUrl}}//api/productTags/1
 
 
 ### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todas las asociaciones producto-tag (CON token)
+GET {{baseUrl}}/api/ProductTags
+Authorization: Bearer {{token}}
+
+### Obtener una asociación por ID (CON token)
+GET {{baseUrl}}/api/ProductTags/1
+Authorization: Bearer {{token}}
+
+### Crear una nueva asociación producto-tag (CON token)
+POST {{baseUrl}}/api/ProductTags
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id_product": 2,
+  "id_tag": 3,
+  "status": "ACTIVE"
+}
+
+### Eliminar una asociación físicamente (CON token)
+DELETE {{baseUrl}}/api/ProductTags/1
+Authorization: Bearer {{token}}

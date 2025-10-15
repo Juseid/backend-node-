@@ -4,7 +4,7 @@
 ### ================== RUTAS SIN AUTENTICACIÓN ==================
 
 ### Obtener todos los tags
-GET {{baseUrl}}/api/tags
+GET {{baseUrl}}/api//tags
 
 
 ### Obtener tag por ID
@@ -40,3 +40,38 @@ DELETE {{baseUrl}}/api/tags/1/logic
 
 
 ### ================== RUTAS CON AUTENTICACIÓN ==================
+
+### Obtener todos los tags (CON token)
+GET {{baseUrl}}/api/Tags
+Authorization: Bearer {{token}}
+
+### Obtener tag por ID (CON token)
+GET {{baseUrl}}/api/Tags/1
+Authorization: Bearer {{token}}
+
+### Crear un nuevo tag (CON token)
+POST {{baseUrl}}/api/Tags
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Hogar",
+  "status": "ACTIVE"
+}
+
+### Actualizar un tag (CON token)
+PATCH {{baseUrl}}/api/Tags/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Hogar y Cocina"
+}
+
+### Eliminar un tag físicamente (CON token)
+DELETE {{baseUrl}}/api/Tags/1
+Authorization: Bearer {{token}}
+
+### Eliminar un tag lógicamente (CON token)
+DELETE {{baseUrl}}/api/Tags/1/logic
+Authorization: Bearer {{token}}

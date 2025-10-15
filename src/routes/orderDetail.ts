@@ -1,12 +1,13 @@
 import { Router, Application } from "express";
 import { OrderDetailController } from "../controllers/orderDetail.controller";
+import { authMiddleware } from "../middleware/auth";
 
 export class OrderDetailRoutes {
   public orderDetailController: OrderDetailController = new OrderDetailController();
 
   public routes(app: Application): void {
     // ================== RUTAS SIN AUTENTICACIÓN ==================
-     app.route("/api/orderdetails")
+     app.route("/api/orderDetails")
       .get(this.orderDetailController.getAllOrderDetails)
       .post(this.orderDetailController.createOrderDetail);
 
@@ -19,7 +20,16 @@ export class OrderDetailRoutes {
       .delete(this.orderDetailController.deleteOrderDetailAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
+    app.route("/api/OrderDetails")
+      .get(authMiddleware, this.orderDetailController.getAllOrderDetails)
+      .post(authMiddleware, this.orderDetailController.createOrderDetail);
 
+    app.route("/api/OrderDetails/:id")
+      .get(authMiddleware, this.orderDetailController.getOrderDetailById)
+      .patch(authMiddleware, this.orderDetailController.updateOrderDetail)
+      .delete(authMiddleware, this.orderDetailController.deleteOrderDetail);
 
+    app.route("/api/OrderDetails/:id/logic")
+      .delete(authMiddleware, this.orderDetailController.deleteOrderDetailAdv);
   }
 }
