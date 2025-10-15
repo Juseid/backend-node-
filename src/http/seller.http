@@ -1,0 +1,46 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzU5OTQyNjMxLCJleHAiOjE3NTk5NDMyMzF9.EAhQ6CjPXiwsq-hbvUSn9EXKF4CXcD-Q9IYMYlcOh3k
+@baseUrl = http://localhost:4000
+
+### ================== RUTAS SIN AUTENTICACIÓN ==================
+
+### Obtener todos los vendedores
+GET {{baseUrl}}/api/sellers
+
+
+### Obtener vendedor por ID
+GET {{baseUrl}}/api/sellers/1
+
+### Crear un nuevo vendedor
+POST {{baseUrl}}/api/sellers
+Content-Type: application/json
+
+{
+  "name": "Tienda de Tecnología ACME",
+  "email": "ventas@acmetech.com",
+  "phone": "3101234567",
+  "password": "password123",
+  "status": "ACTIVE"
+}
+
+
+### Actualizar un vendedor
+PATCH {{baseUrl}}/api/sellers/1
+Content-Type: application/json
+
+{
+  "name": "ACME Tech & Gadgets",
+  "phone": "3107654321"
+}
+
+
+
+### Eliminar un vendedor físicamente
+DELETE {{baseUrl}}/api/sellers/1
+
+
+
+### Eliminar un vendedor lógicamente
+DELETE {{baseUrl}}/api/sellers/1/logic
+
+
+### ================== RUTAS CON AUTENTICACIÓN ==================

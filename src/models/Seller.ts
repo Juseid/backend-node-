@@ -53,14 +53,6 @@ Seller.init(
       type: DataTypes.ENUM("ACTIVE", "INACTIVE"),
       defaultValue: "ACTIVE",
     },
-    code: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        len: [10, 10]
-      }
-    }
   },
     {
     sequelize,

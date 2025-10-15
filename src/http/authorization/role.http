@@ -16,7 +16,7 @@ POST {{baseUrl}}/api/roles
 Content-Type: application/json
 
 {
-  "name": "Administrator",
+  "name": "Vendedor",
   "is_active": "ACTIVE"
 }
 

@@ -12,18 +12,18 @@ GET {{baseUrl}}/api/orders
 
 
 ### Obtener  por ID 
-GET {{baseUrl}}/api/orders/1
+GET {{baseUrl}}/api/orders/2
 
 ### Crear un nuevo  
 POST {{baseUrl}}/api/orders
 Content-Type: application/json
 
 {
-  "id_client": "entretenimiento",
+  "id_client": "1",
   "status": "PENDING",
-  "fecha": "ACTIVE",
-  "total": "ACTIVE",
-  "statuss": "ACTIVE",
+  "fecha": "2024-07-30T10:00:00Z",
+  "total": 150.75,
+  "statuss": "ACTIVE"
 }
 
 
@@ -32,11 +32,11 @@ PATCH {{baseUrl}}/api/orders/1
 Content-Type: application/json
 
 {
-  "id_client": "entretenimiento Actualizado",
+  "id_client": "1",
   "status": "PAID",
-  "fecha": "ACTIVE",
-  "total": "ACTIVE",
-  "statuss": "ACTIVE",
+  "fecha": "2024-07-30T10:00:00Z",
+  "total": 150.75,
+  "statuss": "ACTIVE"
 }
 
 
