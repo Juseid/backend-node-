@@ -20,16 +20,16 @@ export class CategoryRoutes {
       .delete(this.categoryController.deleteCategoryAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
-    app.route("/api/Categories")
+    app.route("/api/ocul/Categories")
       .get(authMiddleware, this.categoryController.getAllCategories)
       .post(authMiddleware, this.categoryController.createCategory);
 
-    app.route("/api/Categories/:id")
+    app.route("/api/ocul/Categories/:id")
       .get(authMiddleware, this.categoryController.getCategoryById)
       .patch(authMiddleware, this.categoryController.updateCategory)
       .delete(authMiddleware, this.categoryController.deleteCategory);
 
-    app.route("/api/Categories/:id/logic")
+    app.route("/api/ocul/Categories/:id/logic")
       .delete(authMiddleware, this.categoryController.deleteCategoryAdv);
 
   }

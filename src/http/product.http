@@ -47,15 +47,15 @@ DELETE {{baseUrl}}/api/products/1/logic
 ### ================== RUTAS CON AUTENTICACIÓN ==================
 
 ### Obtener todos los productos (CON token)
-GET {{baseUrl}}/api/Products
+GET {{baseUrl}}/api/ocul/Products
 Authorization: Bearer {{token}}
 
 ### Obtener producto por ID (CON token)
-GET {{baseUrl}}/api/Products/1
+GET {{baseUrl}}/api/ocul/Products/1
 Authorization: Bearer {{token}}
 
 ### Crear un nuevo producto (CON token)
-POST {{baseUrl}}/api/Products
+POST {{baseUrl}}/api/ocul/Products
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -69,7 +69,7 @@ Content-Type: application/json
 }
 
 ### Actualizar un producto (CON token)
-PATCH {{baseUrl}}/api/Products/1
+PATCH {{baseUrl}}/api/ocul/Products/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -78,9 +78,9 @@ Content-Type: application/json
 }
 
 ### Eliminar un producto físicamente (CON token)
-DELETE {{baseUrl}}/api/Products/1
+DELETE {{baseUrl}}/api/ocul/Products/1
 Authorization: Bearer {{token}}
 
 ### Eliminar un producto lógicamente (CON token)
-DELETE {{baseUrl}}/api/Products/1/logic
+DELETE {{baseUrl}}/api/ocul/Products/1/logic
 Authorization: Bearer {{token}}

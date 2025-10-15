@@ -46,15 +46,15 @@ DELETE {{baseUrl}}/api/sellers/1/logic
 ### ================== RUTAS CON AUTENTICACIÓN ==================
 
 ### Obtener todos los vendedores (CON token)
-GET {{baseUrl}}/api/Sellers
+GET {{baseUrl}}/api/ocul/Sellers
 Authorization: Bearer {{token}}
 
 ### Obtener vendedor por ID (CON token)
-GET {{baseUrl}}/api/Sellers/1
+GET {{baseUrl}}/api/ocul/Sellers/1
 Authorization: Bearer {{token}}
 
 ### Crear un nuevo vendedor (CON token)
-POST {{baseUrl}}/api/Sellers
+POST {{baseUrl}}/api/ocul/Sellers
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -67,7 +67,7 @@ Content-Type: application/json
 }
 
 ### Actualizar un vendedor (CON token)
-PATCH {{baseUrl}}/api/Sellers/1
+PATCH {{baseUrl}}/api/ocul/Sellers/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -76,9 +76,9 @@ Content-Type: application/json
 }
 
 ### Eliminar un vendedor físicamente (CON token)
-DELETE {{baseUrl}}/api/Sellers/1
+DELETE {{baseUrl}}/api/ocul/Sellers/1
 Authorization: Bearer {{token}}
 
 ### Eliminar un vendedor lógicamente (CON token)
-DELETE {{baseUrl}}/api/Sellers/1/logic
+DELETE {{baseUrl}}/api/ocul/Sellers/1/logic
 Authorization: Bearer {{token}}

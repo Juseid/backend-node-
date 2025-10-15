@@ -44,15 +44,15 @@ DELETE {{baseUrl}}/api/shipments/1/logic
 ### ================== RUTAS CON AUTENTICACIÓN ==================
 
 ### Obtener todos los envíos (CON token)
-GET {{baseUrl}}/api/Shipments
+GET {{baseUrl}}/api/ocul/Shipments
 Authorization: Bearer {{token}}
 
 ### Obtener envío por ID (CON token)
-GET {{baseUrl}}/api/Shipments/1
+GET {{baseUrl}}/api/ocul/Shipments/1
 Authorization: Bearer {{token}}
 
 ### Crear un nuevo envío (CON token)
-POST {{baseUrl}}/api/Shipments
+POST {{baseUrl}}/api/ocul/Shipments
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -64,7 +64,7 @@ Content-Type: application/json
 }
 
 ### Actualizar un envío (CON token)
-PATCH {{baseUrl}}/api/Shipments/1
+PATCH {{baseUrl}}/api/ocul/Shipments/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -74,9 +74,9 @@ Content-Type: application/json
 }
 
 ### Eliminar un envío físicamente (CON token)
-DELETE {{baseUrl}}/api/Shipments/1
+DELETE {{baseUrl}}/api/ocul/Shipments/1
 Authorization: Bearer {{token}}
 
 ### Eliminar un envío lógicamente (CON token)
-DELETE {{baseUrl}}/api/Shipments/1/logic
+DELETE {{baseUrl}}/api/ocul/Shipments/1/logic
 Authorization: Bearer {{token}}

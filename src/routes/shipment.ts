@@ -21,16 +21,16 @@ export class ShipmentRoutes {
       .delete(this.shipmentController.deleteShipmentAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
-    app.route("/api/Shipments")
+    app.route("/api/ocul/Shipments")
       .get(authMiddleware, this.shipmentController.getAllShipments)
       .post(authMiddleware, this.shipmentController.createShipment);
 
-    app.route("/api/Shipments/:id")
+    app.route("/api/ocul/Shipments/:id")
       .get(authMiddleware, this.shipmentController.getShipmentById)
       .patch(authMiddleware, this.shipmentController.updateShipment)
       .delete(authMiddleware, this.shipmentController.deleteShipment);
 
-    app.route("/api/Shipments/:id/logic")
+    app.route("/api/ocul/Shipments/:id/logic")
       .delete(authMiddleware, this.shipmentController.deleteShipmentAdv);
 
   }

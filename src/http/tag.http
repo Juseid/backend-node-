@@ -42,15 +42,15 @@ DELETE {{baseUrl}}/api/tags/1/logic
 ### ================== RUTAS CON AUTENTICACIÓN ==================
 
 ### Obtener todos los tags (CON token)
-GET {{baseUrl}}/api/Tags
+GET {{baseUrl}}/api/ocul/Tags
 Authorization: Bearer {{token}}
 
 ### Obtener tag por ID (CON token)
-GET {{baseUrl}}/api/Tags/1
+GET {{baseUrl}}/api/ocul/Tags/1
 Authorization: Bearer {{token}}
 
 ### Crear un nuevo tag (CON token)
-POST {{baseUrl}}/api/Tags
+POST {{baseUrl}}/api/ocul/Tags
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -60,7 +60,7 @@ Content-Type: application/json
 }
 
 ### Actualizar un tag (CON token)
-PATCH {{baseUrl}}/api/Tags/1
+PATCH {{baseUrl}}/api/ocul/Tags/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -69,9 +69,9 @@ Content-Type: application/json
 }
 
 ### Eliminar un tag físicamente (CON token)
-DELETE {{baseUrl}}/api/Tags/1
+DELETE {{baseUrl}}/api/ocul/Tags/1
 Authorization: Bearer {{token}}
 
 ### Eliminar un tag lógicamente (CON token)
-DELETE {{baseUrl}}/api/Tags/1/logic
+DELETE {{baseUrl}}/api/ocul/Tags/1/logic
 Authorization: Bearer {{token}}

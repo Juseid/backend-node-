@@ -20,16 +20,16 @@ export class OrderDetailRoutes {
       .delete(this.orderDetailController.deleteOrderDetailAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
-    app.route("/api/OrderDetails")
+    app.route("/api/ocul/OrderDetails")
       .get(authMiddleware, this.orderDetailController.getAllOrderDetails)
       .post(authMiddleware, this.orderDetailController.createOrderDetail);
 
-    app.route("/api/OrderDetails/:id")
+    app.route("/api/ocul/OrderDetails/:id")
       .get(authMiddleware, this.orderDetailController.getOrderDetailById)
       .patch(authMiddleware, this.orderDetailController.updateOrderDetail)
       .delete(authMiddleware, this.orderDetailController.deleteOrderDetail);
 
-    app.route("/api/OrderDetails/:id/logic")
+    app.route("/api/ocul/OrderDetails/:id/logic")
       .delete(authMiddleware, this.orderDetailController.deleteOrderDetailAdv);
   }
 }

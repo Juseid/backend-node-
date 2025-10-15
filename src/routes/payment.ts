@@ -21,16 +21,16 @@ export class PaymentRoutes {
       .delete(this.paymentController.deletePaymentAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
-    app.route("/api/Payments")
+    app.route("/api/ocul/Payments")
       .get(authMiddleware, this.paymentController.getAllPayments)
       .post(authMiddleware, this.paymentController.createPayment);
 
-    app.route("/api/Payment/:id")
+    app.route("/api/ocul/Payment/:id")
       .get(authMiddleware, this.paymentController.getPaymentById)
       .patch(authMiddleware, this.paymentController.updatePayment)
       .delete(authMiddleware, this.paymentController.deletePayment);
 
-    app.route("/api/Payments/:id/logic")
+    app.route("/api/ocul/Payments/:id/logic")
       .delete(authMiddleware, this.paymentController.deletePaymentAdv);
 
   }

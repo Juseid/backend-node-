@@ -45,15 +45,15 @@ DELETE {{baseUrl}}/api/orderDetails/1/logic
 ### ================== RUTAS CON AUTENTICACIÓN ==================
 
 ### Obtener todos los detalles de órdenes (CON token)
-GET {{baseUrl}}/api/OrderDetails
+GET {{baseUrl}}/api/ocul/OrderDetails
 Authorization: Bearer {{token}}
 
 ### Obtener un detalle de orden por ID (CON token)
-GET {{baseUrl}}/api/OrderDetails/1
+GET {{baseUrl}}/api/ocul/OrderDetails/1
 Authorization: Bearer {{token}}
 
 ### Crear un nuevo detalle de orden (CON token)
-POST {{baseUrl}}/api/OrderDetails
+POST {{baseUrl}}/api/ocul/OrderDetails
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -66,7 +66,7 @@ Content-Type: application/json
 }
 
 ### Actualizar un detalle de orden (CON token)
-PATCH {{baseUrl}}/api/OrderDetails/1
+PATCH {{baseUrl}}/api/ocul/OrderDetails/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -76,11 +76,11 @@ Content-Type: application/json
 }
 
 ### Eliminar un detalle de orden físicamente (CON token)
-DELETE {{baseUrl}}/api/OrderDetails/1
+DELETE {{baseUrl}}/api/ocul/OrderDetails/1
 Authorization: Bearer {{token}}
 
 ### Eliminar un detalle de orden lógicamente (CON token)
-DELETE {{baseUrl}}/api/OrderDetails/1/logic
+DELETE {{baseUrl}}/api/ocul/OrderDetails/1/logic
 Authorization: Bearer {{token}}
 
 

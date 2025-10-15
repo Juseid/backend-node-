@@ -52,15 +52,15 @@ DELETE {{baseUrl}}/api/orders/1/logic
 
 ### ================== RUTAS CON AUTENTICACIÓN ==================
 ### Obtener todas las órdenes (CON token)
-GET {{baseUrl}}/api/Orders
+GET {{baseUrl}}/api/ocul/Orders
 Authorization: Bearer {{token}}
 
 ### Obtener orden por ID (CON token)
-GET {{baseUrl}}/api/Orders/2
+GET {{baseUrl}}/api/ocul/Orders/2
 Authorization: Bearer {{token}}
 
 ### Crear una nueva orden (CON token)
-POST {{baseUrl}}/api/Orders
+POST {{baseUrl}}/api/ocul/Orders
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -73,7 +73,7 @@ Content-Type: application/json
 }
 
 ### Actualizar una orden (CON token)
-PATCH {{baseUrl}}/api/Orders/1
+PATCH {{baseUrl}}/api/ocul/Orders/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -82,9 +82,9 @@ Content-Type: application/json
 }
 
 ### Eliminar una orden físicamente (CON token)
-DELETE {{baseUrl}}/api/Orders/1
+DELETE {{baseUrl}}/api/ocul/Orders/1
 Authorization: Bearer {{token}}
 
 ### Eliminar una orden lógicamente (CON token)
-DELETE {{baseUrl}}/api/Orders/1/logic
+DELETE {{baseUrl}}/api/ocul/Orders/1/logic
 Authorization: Bearer {{token}}

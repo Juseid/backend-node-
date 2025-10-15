@@ -19,16 +19,16 @@ export class ClientRoutes {
       .delete(this.clientController.deleteClientAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
-    app.route("/api/Clientes")
+    app.route("/api/ocul/Clientes")
       .get(authMiddleware, this.clientController.getAllClients)
       .post(authMiddleware, this.clientController.createClient);
 
-    app.route("/api/Clientes/:id")
+    app.route("/api/ocul/Clientes/:id")
       .get(authMiddleware, this.clientController.getClientById)
       .patch(authMiddleware, this.clientController.updateClient)
       .delete(authMiddleware, this.clientController.deleteClient);
 
-    app.route("/api/Clientes/:id/logic")
+    app.route("/api/ocul/Clientes/:id/logic")
       .delete(authMiddleware, this.clientController.deleteClientAdv);
 
   }

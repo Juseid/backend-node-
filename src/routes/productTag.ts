@@ -20,16 +20,16 @@ export class ProductTagRoutes {
       .delete(this.productTagController.deleteProductTagAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
-    app.route("/api/ProductTags")
+    app.route("/api/ocul/ProductTags")
       .get(authMiddleware, this.productTagController.getAllProductTags)
       .post(authMiddleware, this.productTagController.createProductTag);
 
-    app.route("/api/ProductTags/:id")
+    app.route("/api/ocul/ProductTags/:id")
       .get(authMiddleware, this.productTagController.getProductTagById)
       .patch(authMiddleware, this.productTagController.updateProductTag)
       .delete(authMiddleware, this.productTagController.deleteProductTag);
 
-    app.route("/api/ProductTags/:id/logic")
+    app.route("/api/ocul/ProductTags/:id/logic")
       .delete(authMiddleware, this.productTagController.deleteProductTagAdv);
 
   }

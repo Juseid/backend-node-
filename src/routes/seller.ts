@@ -21,16 +21,16 @@ export class SellerRoutes {
       .delete(this.sellerController.deleteSellerAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
-    app.route("/api/Sellers")
+    app.route("/api/ocul/Sellers")
       .get(authMiddleware, this.sellerController.getAllSellers)
       .post(authMiddleware, this.sellerController.createSeller);
 
-    app.route("/api/Sellers/:id")
+    app.route("/api/ocul/Sellers/:id")
       .get(authMiddleware, this.sellerController.getSellerById)
       .patch(authMiddleware, this.sellerController.updateSeller)
       .delete(authMiddleware, this.sellerController.deleteSeller);
 
-    app.route("/api/Sellers/:id/logic")
+    app.route("/api/ocul/Sellers/:id/logic")
       .delete(authMiddleware, this.sellerController.deleteSellerAdv);
 
   }

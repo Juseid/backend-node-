@@ -55,15 +55,15 @@ DELETE {{baseUrl}}/api/clientes/1/logic
 ### ================== RUTAS CON AUTENTICACIÓN ==================
 
 ### Obtener todos los clientes (CON token)
-GET {{baseUrl}}/api/Clientes
+GET {{baseUrl}}/api/ocul/Clientes
 Authorization: Bearer {{token}}
 
 ### Obtener cliente por ID (CON token)
-GET {{baseUrl}}/api/Clientes/1
+GET {{baseUrl}}/api/ocul/Clientes/1
 Authorization: Bearer {{token}}
 
 ### Crear un nuevo cliente (CON token)
-POST {{baseUrl}}/api/Clientes
+POST {{baseUrl}}/api/ocul/Clientes
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -77,7 +77,7 @@ Content-Type: application/json
 }
 
 ### Actualizar un cliente (CON token)
-PATCH {{baseUrl}}/api/Clientes/1
+PATCH {{baseUrl}}/api/ocul/Clientes/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -87,9 +87,9 @@ Content-Type: application/json
 }
 
 ### Eliminar un cliente físicamente (CON token)
-DELETE {{baseUrl}}/api/Clientes/1
+DELETE {{baseUrl}}/api/ocul/Clientes/1
 Authorization: Bearer {{token}}
 
 ### Eliminar un cliente lógicamente (CON token)
-DELETE {{baseUrl}}/api/Clientes/1/logic
+DELETE {{baseUrl}}/api/ocul/Clientes/1/logic
 Authorization: Bearer {{token}}

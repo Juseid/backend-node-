@@ -21,16 +21,16 @@ export class TagRoutes {
       .delete(this.tagController.deleteTagAdv);
 
     // ================== RUTAS CON AUTENTICACIÓN ==================
-    app.route("/api/Tags")
+    app.route("/api/ocul/Tags")
       .get(authMiddleware, this.tagController.getAllTags)
       .post(authMiddleware, this.tagController.createTag);
 
-    app.route("/api/Tags/:id")
+    app.route("/api/ocul/Tags/:id")
       .get(authMiddleware, this.tagController.getTagById)
       .patch(authMiddleware, this.tagController.updateTag)
       .delete(authMiddleware, this.tagController.deleteTag);
 
-    app.route("/api/Tags/:id/logic")
+    app.route("/api/ocul/Tags/:id/logic")
       .delete(authMiddleware, this.tagController.deleteTagAdv);
 
   }
