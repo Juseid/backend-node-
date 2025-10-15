@@ -53,7 +53,7 @@ export class App {
 
   private async dbConnection(): Promise<void> {
     try {
-      await sequelize.sync({ force: true }); // Synchronize the database
+      await sequelize.sync({ force: false }); // Synchronize the database
       console.log("Database connected successfully");
     } catch (error) {
       console.error("Unable to connect to the database:", error);
