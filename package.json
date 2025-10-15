@@ -6,7 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon src/server.ts --exec ts-node"
+    "dev": "nodemon src/server.ts --exec ts-node",
+    "seed": "ts-node src/faker/populate_data.ts"
   },
   "keywords": [],
   "author": "",

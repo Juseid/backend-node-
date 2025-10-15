@@ -1,0 +1,53 @@
+// client.http
+import dotenv from "dotenv";
+
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzU5OTQyNjMxLCJleHAiOjE3NTk5NDMyMzF9.EAhQ6CjPXiwsq-hbvUSn9EXKF4CXcD-Q9IYMYlcOh3k
+@baseUrl = http://localhost:4000
+
+### Peticiones sin TOKEN
+
+### Obtener todos los  
+GET {{baseUrl}}/api/orders
+
+
+### Obtener  por ID 
+GET {{baseUrl}}/api/orders/1
+
+### Crear un nuevo  
+POST {{baseUrl}}/api/orders
+Content-Type: application/json
+
+{
+  "id_client": "entretenimiento",
+  "status": "PENDING",
+  "fecha": "ACTIVE",
+  "total": "ACTIVE",
+  "statuss": "ACTIVE",
+}
+
+
+### Actualizar  
+PATCH {{baseUrl}}/api/orders/1
+Content-Type: application/json
+
+{
+  "id_client": "entretenimiento Actualizado",
+  "status": "PAID",
+  "fecha": "ACTIVE",
+  "total": "ACTIVE",
+  "statuss": "ACTIVE",
+}
+
+
+
+### Eliminar  físicamente 
+DELETE {{baseUrl}}/api/orders/1
+
+
+
+### Eliminar lógicamente
+DELETE {{baseUrl}}/api/orders/1/logic
+
+
+### ================== RUTAS CON AUTENTICACIÓN ==================
