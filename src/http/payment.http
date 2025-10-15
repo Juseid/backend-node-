@@ -15,7 +15,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "id_order": 2,
+  "id_order": 1,
   "method": "Credit Card",
   "amount": 119000,
   "status": "ACTIVE"

@@ -19,7 +19,7 @@ POST {{baseUrl}}/api/categories
 Content-Type: application/json
 
 {
-  "name": "entretenimiento",
+  "name": "tecnologia",
   "status": "ACTIVE"
 }
 

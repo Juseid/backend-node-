@@ -16,7 +16,7 @@ POST {{baseUrl}}/api/roles
 Content-Type: application/json
 
 {
-  "name": "Vendedor",
+  "name": "Comprador",
   "is_active": "ACTIVE"
 }
 
@@ -25,7 +25,7 @@ PATCH {{baseUrl}}/api/roles/1
 Content-Type: application/json
 
 {
-  "name": "Super Administrator",
+  "name": "Comprador",
   "is_active": "ACTIVE"
 }
 

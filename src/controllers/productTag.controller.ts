@@ -5,10 +5,10 @@ export class ProductTagController {
   // Get all productTag with status "ACTIVE"
   public async getAllProductTags(req: Request, res: Response) {
     try {
-      const products: ProductTagI[] = await ProductTag.findAll({
+      const producTags: ProductTagI[] = await ProductTag.findAll({
         where: { status: 'ACTIVE' },
       });
-      res.status(200).json({ products });
+      res.status(200).json({ producTags });
     } catch (error) {
       res.status(500).json({ error: "Error fetching productTags" });
     }

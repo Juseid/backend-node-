@@ -15,7 +15,7 @@ POST {{baseUrl}}/api/ProductTags
 Content-Type: application/json
 
 {
-  "id_product": 3,
+  "id_product": 1,
   "id_tag": 1,
   "status": "ACTIVE"
 }

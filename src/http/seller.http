@@ -15,7 +15,7 @@ POST {{baseUrl}}/api/sellers
 Content-Type: application/json
 
 {
-  "name": "Tienda de Tecnología ACME",
+  "name": "juan",
   "email": "ventas@acmetech.com",
   "phone": "3101234567",
   "password": "password123",
