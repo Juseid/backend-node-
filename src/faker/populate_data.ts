@@ -1,172 +1,83 @@
-import { faker } from '@faker-js/faker';
-import { sequelize } from '../database/connection';
-
-// Importa todos tus modelos
 import { Client } from '../models/Client';
-import { Seller } from '../models/Seller';
-import { Category } from '../models/Category';
-import { Tag } from '../models/Tag';
+import { ProductType } from '../models/ProductType';
 import { Product } from '../models/Product';
-import { ProductTag } from '../models/ProductTag';
-import { Order } from '../models/Order';
-import { OrderDetail } from '../models/OrderDetail';
-import { Review } from '../models/Review';
-import { Payment } from '../models/Payment';
-import { Shipment } from '../models/Shipment';
+import { Sale } from '../models/Sale';
+import { ProductSale } from '../models/ProductSale';
+import { faker } from '@faker-js/faker';
 
-const createFakeData = async () => {
-  try {
-    console.log('Connecting to the database...');
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-
-    // ¡CUIDADO! `force: true` borrará todas las tablas y las volverá a crear.
-    // Úsalo solo en desarrollo.
-    console.log('Syncing database schema (this will delete all existing data)...');
-    await sequelize.sync({ force: true });
-    console.log('Database schema synced.');
-
-    // --- CREACIÓN DE DATOS FALSOS ---
-
-    // 1. Crear Vendedores (Sellers)
-    const sellersData = Array.from({ length: 10 }).map(() => ({
-      name: faker.company.name(),
-      email: faker.internet.email().toLowerCase(),
-      phone: faker.phone.number(),
-      password: 'password123', // El hook se encargará de hashearlo
-      code: faker.string.alphanumeric(10).toUpperCase(), // Añadido para coincidir con el modelo Seller
-      status: 'ACTIVE',
-    }));
-    const sellers = await Seller.bulkCreate(sellersData);
-    console.log(`✅ ${sellers.length} sellers created.`);
-
-    // 2. Crear Categorías
-    const categoriesData = ['Electrónica', 'Ropa y Accesorios', 'Hogar y Cocina', 'Deportes', 'Libros'].map(name => ({ name, status: 'ACTIVE' }));
-    const categories = await Category.bulkCreate(categoriesData);
-    console.log(`✅ ${categories.length} categories created.`);
-
-    // 2.5 Crear Tags
-    const tagsData = ['Oferta', 'Nuevo', 'Más Vendido', 'Electrónico', 'Verano', 'Invierno', 'Deportivo'].map(name => ({ name, status: 'ACTIVE' }));
-    const tags = await Tag.bulkCreate(tagsData);
-    console.log(`✅ ${tags.length} tags created.`);
-
-
-    // 3. Crear Clientes
-    const clientsData = Array.from({ length: 25 }).map(() => ({
-      name: faker.person.fullName(),
-      address: faker.location.streetAddress(),
-      email: faker.internet.email().toLowerCase(),
-      password: 'password123', // El hook se encargará de hashearlo
-      code: faker.string.alphanumeric(10).toUpperCase(),
-      status: 'ACTIVE',
-    }));
-    const clients = await Client.bulkCreate(clientsData);
-    console.log(`✅ ${clients.length} clients created.`);
-
-    // 4. Crear Productos
-    const productsData = Array.from({ length: 100 }).map(() => ({
-      name: faker.commerce.productName(),
-      description: faker.commerce.productDescription(),
-      price: parseFloat(faker.commerce.price()),
-      id_seller: faker.helpers.arrayElement(sellers).id, // Correcto
-      id_category: faker.helpers.arrayElement(categories).id, // Correcto
-      status: 'ACTIVE',
-    }));
-    const products = await Product.bulkCreate(productsData);
-    console.log(`✅ ${products.length} products created.`);
-
-    // 4.5. Asociar Tags a Productos (ProductTag)
-    const productTagsData = [];
-    for (const product of products) {
-        const tagsToAssign = faker.helpers.arrayElements(tags, { min: 1, max: 3 });
-        for (const tag of tagsToAssign) {
-            productTagsData.push({ id_product: product.id, id_tag: tag.id, status: 'ACTIVE' });
-        }
-    }
-    await ProductTag.bulkCreate(productTagsData, { ignoreDuplicates: true });
-    console.log(`✅ ${productTagsData.length} product-tag associations created.`);
-
-
-    // 5. Crear Órdenes y sus Detalles, Pagos y Envíos
-    const ordersData = [];
-    const orderDetailsData = [];
-    const paymentsData = [];
-    const shipmentsData = [];
-
+async function createFakeData() {
+    // Crear clientes falsos
     for (let i = 0; i < 50; i++) {
-      const client = faker.helpers.arrayElement(clients);
-      let orderTotal = 0;
-      const productsInOrder = faker.helpers.arrayElements(products, { min: 1, max: 4 });
-
-      const order = {
-        id_client: client.id,
-        fecha: faker.date.past({ years: 1 }),
-        total: 0, // Se calculará después
-        status: faker.helpers.arrayElement(['PENDING', 'PAID', 'SHIPPED']),
-        statuss: 'ACTIVE',
-      };
-      const createdOrder = await Order.create(order);
-
-      for (const product of productsInOrder) {
-        const quantity = faker.number.int({ min: 1, max: 3 });
-        const price = product.price;
-        orderTotal += quantity * price;
-        orderDetailsData.push({
-          id_order: createdOrder.id,
-          id_product: product.id,
-          quantity: quantity,
-          status: 'ACTIVE', // Añadido para coincidir con el modelo OrderDetail
-          price: price,
+        await Client.create({
+            name: faker.person.fullName(),
+            address: faker.location.streetAddress(),
+            phone: faker.phone.number(), // Genera un número de teléfono aleatorio
+            email: faker.internet.email(),
+            password: faker.internet.password(),
+            status: 'ACTIVE',
         });
-      }
-
-      await createdOrder.update({ total: orderTotal });
-
-      // Crear Pago para la orden
-      paymentsData.push({
-        id_order: createdOrder.id,
-        method: faker.helpers.arrayElement(['Credit Card', 'PayPal', 'Bank Transfer']),
-        status: 'ACTIVE',
-        payment_date: faker.date.recent({ days: 10 }), // Añadido para coincidir con el modelo Payment
-        amount: orderTotal,
-      });
-
-      // Crear Envío para la orden
-      shipmentsData.push({
-        id_order: createdOrder.id,
-        fecha_envio: faker.date.recent({ days: 5 }), // Añadido para coincidir con el modelo Shipment
-        status: 'ACTIVE',
-        tracking_number: faker.string.alphanumeric(15).toUpperCase(),
-      });
     }
 
-    await OrderDetail.bulkCreate(orderDetailsData, { ignoreDuplicates: true });
-    await Payment.bulkCreate(paymentsData);
-    await Shipment.bulkCreate(shipmentsData);
-    console.log(`✅ 50 orders with details, payments, and shipments created.`);
+    // Crear tipos de productos falsos
+    for (let i = 0; i < 10; i++) {
+        await ProductType.create({
+            name: faker.commerce.department(),
+            description: faker.commerce.productDescription(),
+            status: 'ACTIVE',
+        });
+    }
 
-    // 6. Crear Reseñas (Reviews)
-    const reviewsData = Array.from({ length: 80 }).map(() => ({
-      id_product: faker.helpers.arrayElement(products).id, // Correcto
-      id_client: faker.helpers.arrayElement(clients).id, // Correcto
-      rating: faker.number.int({ min: 1, max: 5 }),
-      comment: faker.lorem.sentence(),
-      status: 'ACTIVE',
-    }));
-    await Review.bulkCreate(reviewsData, { ignoreDuplicates: true });
-    console.log(`✅ ${reviewsData.length} reviews created.`);
+    // Crear productos falsos
+    const typeProducts = await ProductType.findAll();
+    for (let i = 0; i < 20; i++) {
+        await Product.create({
+            name: faker.commerce.productName(),
+            brand: faker.company.name(),
+            price: faker.number.bigInt(),
+            min_stock: faker.number.int({ min: 1, max: 10 }),
+            quantity: faker.number.int({ min: 1, max: 100 }),
+            product_type_id: typeProducts.length > 0
+                ? typeProducts[faker.number.int({ min: 0, max: typeProducts.length - 1 })]?.id
+                : null,
+            status: 'ACTIVE',
+        });
+    }
 
-    console.log('\n🚀 Database seeding completed successfully!');
-  } catch (error) {
-    console.error('❌ Unable to seed the database:', error);
-  } finally {
-    await sequelize.close();
-    console.log('Database connection closed.');
-  }
+    // Crear ventas falsas
+    const clients = await Client.findAll();
+    for (let i = 0; i < 100; i++) {
+        await Sale.create({
+            sale_date: faker.date.past(),
+            subtotal: faker.number.bigInt(),
+            tax: faker.number.bigInt(),
+            discounts: faker.number.bigInt(),
+            total: faker.number.bigInt(),
+            status: 'ACTIVE',
+            client_id: clients.length > 0
+                ? clients[faker.number.int({ min: 0, max: clients.length - 1 })]?.id ?? null
+                : null
+        });
+    }
+
+//     // Crear productos ventas falsos
+    const sales = await Sale.findAll();
+    const products = await Product.findAll();
+    for (let i = 0; i < 200; i++) {
+        await ProductSale.create({
+            total: faker.number.bigInt(),
+            sale_id: sales[faker.number.int({ min: 0, max: sales.length - 1 })]?.id ?? null,
+            product_id: products[faker.number.int({ min: 0, max: products.length - 1 })]?.id ?? null
+        });
+    }
 }
 
 createFakeData().then(() => {
-    console.log('Seeding process finished.');
+    console.log('Datos falsos creados exitosamente');
 }).catch((error) => {
-    console.error('An unexpected error occurred:', error);
+    console.error('Error al crear datos falsos:', error);
 });
+
+// Para ejecutar este script, ejecute el siguiente comando:
+// npm install -g ts-node
+// ts-node src/faker/populate_data.ts
+// npm install @faker-js/faker

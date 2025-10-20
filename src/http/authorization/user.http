@@ -14,7 +14,7 @@ POST {{baseUrl}}/api/users
 Content-Type: application/json
 
 {
-  "username": "juasn",
+  "username": "juaASn",
   "email": "newuser@example.com",
   "password": "123456",
   "is_active": "ACTIVE",

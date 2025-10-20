@@ -1,7 +1,7 @@
 ### role.http
 
 @baseUrl = http://localhost:4000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTc2MDA2MDU1NywiZXhwIjoxNzYwMDYxMTU3fQ.l9kxHGraKffDkcOLHMmaVa12iOQKdrhZHrNnP6wb6dA
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYwNTYyNzU2LCJleHAiOjE3NjA1NjMzNTZ9.YHaNo-RcUzUk86V5ZAGw_bGl2DPfe1xKPzQ17ID8n7c
 
 ### ================== RUTAS SIN AUTENTICACIÓN ==================
 
@@ -16,7 +16,7 @@ POST {{baseUrl}}/api/roles/public
 Content-Type: application/json
 
 {
-  "name": "Administrator",
+  "name": "Cliente",
   "is_active": "ACTIVE"
 }
 
@@ -25,7 +25,7 @@ PATCH {{baseUrl}}/api/roles/public/1
 Content-Type: application/json
 
 {
-  "name": "Super Administrator",
+  "name": "cliente",
   "is_active": "ACTIVE"
 }
 

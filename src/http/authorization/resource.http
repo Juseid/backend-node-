@@ -16,8 +16,8 @@ POST {{baseUrl}}/api/resources/public
 Content-Type: application/json
 
 {
-  "path": "/api/clientes",
-  "method": "GET",
+  "path": "/api/Vendedor",
+  "method": "DELETE",
   "is_active": "ACTIVE"
 }
 
