@@ -16,8 +16,8 @@ POST {{baseUrl}}/api/resources/public
 Content-Type: application/json
 
 {
-  "path": "/api/Vendedor",
-  "method": "DELETE",
+  "path": "/api/ocul/Clientes",
+  "method": "POST",
   "is_active": "ACTIVE"
 }
 
@@ -35,7 +35,7 @@ Content-Type: application/json
 DELETE {{baseUrl}}/api/resources/public/1
 
 ### Eliminar un recurso lógicamente (SIN token)
-DELETE {{baseUrl}}/api/resources/public/2/logic
+DELETE {{baseUrl}}/api/resources/public/1/logic
 
 ### ================== RUTAS CON AUTENTICACIÓN ==================
 
