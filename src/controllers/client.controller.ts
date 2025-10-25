@@ -46,11 +46,15 @@ export class ClientController {
         password,
         status,
       };
-
       const newClient = await Client.create({ ...body });
       res.status(201).json(newClient);
     } catch (error: any) {
-      res.status(400).json({ error: error.message });
+      res.status(400).json({
+        error: error.message,
+        details: error.errors || null
+       });
+
+
     }
   }
 

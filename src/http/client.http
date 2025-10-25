@@ -2,7 +2,7 @@
 import dotenv from "dotenv";
 
 
-@token = eyJhbGciOiJIvzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYxMTUzODAxLCJleHAiOjE3NjExNTQ0MDF9.nMAkea2JI4DKTrSKvQFUmafdPQbY2CNZWOFJhI3ePj8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYxNDMwNDc2LCJleHAiOjE3NjE0MzEwNzZ9.kg_CtazcDO2wLgH_sKJiuPr9pSeRceuVRxTY6hzuYDM
 @baseUrl = http://localhost:4000
 
 ### Peticiones sin TOKEN
@@ -19,10 +19,10 @@ POST {{baseUrl}}/api/clientes
 Content-Type: application/json
 
 {
-  "name": "juan sebasdtian",
+  "name": "juafn sebasdtian",
   "address": "Km 12",
-  "code": "1082843720",
-  "email": "jqm@gmail.com",
+  "code": "1081843720",
+  "email": "jqqm@gmail.com",
   "password": "12345678",
   "status": "ACTIVE"
 }
@@ -70,7 +70,7 @@ Content-Type: application/json
 {
   "name": "María García",
   "address": "Avenida Siempre Viva 742",
-  "code": "987654321",
+  "code": "1234567891",
   "email": "maria.garcia@example.com",
   "password": "securepassword123",
   "status": "ACTIVE"

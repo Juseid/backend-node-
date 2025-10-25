@@ -9,5 +9,6 @@ export class UserController {
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener los usuarios' });
     }
-  }
+  }  
+
 }
